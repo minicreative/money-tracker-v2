@@ -1,0 +1,31 @@
+{
+  "name": "money-tracker-v2-backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/minicreative/money-tracker-v2#readme",
+  "bugs": {
+    "url": "https://github.com/minicreative/money-tracker-v2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minicreative/money-tracker-v2.git"
+  },
+  "license": "ISC",
+  "author": "Tomas Roy",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "npm run watch & npm run start"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

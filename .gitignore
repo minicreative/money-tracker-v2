@@ -1,0 +1,6 @@
+# Local Environment Files
+environment.sh
+
+# Editor directories and files
+.vscode/*
+.DS_Store
