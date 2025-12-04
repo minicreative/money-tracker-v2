@@ -1,0 +1,23 @@
+{
+  "name": "money-tracker-v2",
+  "version": "1.0.0",
+  "description": "Simple JS app for keeping track of spending",
+  "homepage": "https://github.com/minicreative/money-tracker-v2#readme",
+  "bugs": {
+    "url": "https://github.com/minicreative/money-tracker-v2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minicreative/money-tracker-v2.git"
+  },
+  "license": "ISC",
+  "author": "Tomas Roy",
+  "type": "commonjs",
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.6.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
+    "typescript-eslint": "^8.48.1"
+  }
+}
