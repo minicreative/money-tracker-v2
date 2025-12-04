@@ -15,17 +15,23 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc --watch",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "npm run watch & npm run start"
+    "build:watch": "tsc --watch",
+    "start:dev": "nodemon --watch dist --exec node dist/index.js",
+    "dev": "npm run build:watch & npm run start:dev",
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
-    "typescript": "^5.9.3"
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "nodemon": "^3.1.11",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.0.0"
   }
 }
