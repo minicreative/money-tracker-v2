@@ -12,12 +12,17 @@
   },
   "license": "ISC",
   "author": "Tomas Roy",
-  "type": "commonjs",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
+  },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^5.6.1",
     "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react": "^7.37.5",
     "globals": "^16.5.0",
+    "prettier": "^3.7.4",
     "typescript-eslint": "^8.48.1"
   }
 }

@@ -1,21 +1,49 @@
-import js from '@eslint/js'
-import stylestic from '@stylistic/eslint-plugin'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import globals from "globals";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
+import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(['dist']),
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    extends: [
-      stylestic.configs.recommended,
-      js.configs.recommended,
-      tseslint.configs.recommended,
-    ],
+    basePath: "backend",
+    ignores: ["node_modules/**", "dist/**"],
+    files: ["**/*.{js,ts,jsx,tsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.node,
+      },
+      parserOptions: {
+        tsconfigRootDir: "/backend/tsconfig.json"
+      }
     },
+    extends: [
+      eslint.configs.recommended,
+      tseslint.configs.recommended
+    ]
   },
-])
+  {
+    basePath: "frontend",
+    ignores: ["node_modules/**", "dist/**"],
+    files: ["**/*.{js,ts,jsx,tsx}"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+      parserOptions: {
+        tsconfigRootDir: "/frontend/tsconfig.json"
+      }
+    },
+    plugins: {
+      react: pluginReact
+    },
+    extends: [
+      eslint.configs.recommended,
+      tseslint.configs.recommended,
+      pluginReact.configs.flat.recommended
+    ],
+    rules: {
+      "react/react-in-jsx-scope": "off"
+    }
+  },
+]);
