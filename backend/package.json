@@ -16,10 +16,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "build:watch": "tsc --watch",
-    "start:dev": "nodemon --watch dist --exec node dist/index.js",
-    "dev": "npm run build:watch & npm run start:dev",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "watch-tsc": "tsc --watch",
+    "watch-server": "nodemon --watch dist --exec node dist/index.js",
+    "dev": "npm run watch-tsc & npm run watch-server"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

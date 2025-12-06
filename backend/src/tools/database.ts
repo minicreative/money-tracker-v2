@@ -16,7 +16,7 @@ export default {
       })
       .catch((err) => {
         process.stderr.write("Database error: " + err.stack + "\n");
-        process.exit(0);
+        process.exit(0)
       });
   },
 };
