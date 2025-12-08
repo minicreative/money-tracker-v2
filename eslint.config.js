@@ -20,7 +20,15 @@ export default defineConfig([
     extends: [
       eslint.configs.recommended,
       tseslint.configs.recommended
-    ]
+    ],
+    overrides: [
+      {
+        files: ["**/*.test.ts"],
+        rules: {
+          "@typescript-eslint/no-explicit-any": "off",
+        },
+      },
+    ],
   },
   {
     basePath: "frontend",

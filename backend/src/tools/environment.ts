@@ -1,17 +1,14 @@
-interface EnvironmentValues {
-  NODE_ENV: "development" | "production";
-  PORT: number;
-  SECRET: string;
-  MONGO_HOST: string;
-  MONGO_NAME: string;
-  MONGO_USER: string;
-  MONGO_PASS: string;
+interface MongoConfig {
+  user: string;
+  password: string;
+  host: string;
+  name: string;
 }
 
-function getOptionalString(name: string, defaultString?: string): string {
+function getOptionalString(name: string, defaultString: string): string {
   const value = process.env[name];
   if (!value) {
-    return defaultString || "";
+    return defaultString;
   }
   return value;
 }
@@ -41,26 +38,17 @@ function getNumericValue(name: string): number {
   return num;
 }
 
-const environment: EnvironmentValues = {
-  NODE_ENV: getOptionalString(
-    "NODE_ENV",
-    "development",
-  ) as EnvironmentValues["NODE_ENV"],
-  PORT: getNumericValue("PORT") as EnvironmentValues["PORT"],
-  SECRET: getRequiredString("SECRET") as EnvironmentValues["SECRET"],
-  MONGO_HOST: getRequiredString(
-    "MONGO_HOST",
-  ) as EnvironmentValues["MONGO_HOST"],
-  MONGO_NAME: getRequiredString(
-    "MONGO_NAME",
-  ) as EnvironmentValues["MONGO_NAME"],
-  MONGO_USER: getRequiredString(
-    "MONGO_USER",
-  ) as EnvironmentValues["MONGO_USER"],
-  MONGO_PASS: getRequiredString(
-    "MONGO_PASS",
-  ) as EnvironmentValues["MONGO_PASS"],
+export default {
+  getEnviornment: () => getOptionalString("NODE_ENV", "development"),
+  getPort: () => getNumericValue("PORT"),
+  getMongoConfig: () => {
+    const mongoConfig: MongoConfig = {
+      user: getRequiredString("MONGO_USER"),
+      password: getRequiredString("MONGO_PASS"),
+      host: getRequiredString("MONGO_HOST"),
+      name: getRequiredString("MONGO_NAME"),
+    }
+    return mongoConfig;
+  }
 };
-
-Object.freeze(environment);
-export default environment;
+export type { MongoConfig };

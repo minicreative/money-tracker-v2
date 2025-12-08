@@ -1,22 +1,21 @@
 import mongoose from "mongoose";
 import environment from "./environment.js";
 
+async function connect(): Promise<mongoose.Mongoose> {
+
+  // Attempt to get Mongo configuration from environment variables
+  let mongoConfig
+  try {
+    mongoConfig = environment.getMongoConfig();
+  } catch (err) {
+    return Promise.reject(err);
+  }
+  const { user, password, host, name } = mongoConfig;
+
+  // Attempt to connect to MongoDB
+  return mongoose.connect(`mongodb://${user}:${encodeURIComponent(password)}@${host}/${name}`)
+}
+
 export default {
-  async connect(): Promise<void> {
-    const { MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_NAME } = environment;
-
-    process.stdout.write(`Connecting to Mongo at ${MONGO_HOST}...`);
-
-    return mongoose
-      .connect(
-        `mongodb://${MONGO_USER}:${encodeURIComponent(MONGO_PASS)}@${MONGO_HOST}/${MONGO_NAME}`,
-      )
-      .then(() => {
-        process.stdout.write(" done!\n");
-      })
-      .catch((err) => {
-        process.stderr.write("Database error: " + err.stack + "\n");
-        process.exit(0)
-      });
-  },
+  connect,
 };

@@ -4,13 +4,19 @@ import database from "./tools/database.js";
 
 export default async function index() {
   // Load environment variables
-  const { PORT } = environment;
+  const PORT = environment.getPort();
 
   // Setup Express server
   const app = express();
 
   // Connect to database
-  await database.connect();
+  console.log("Connecting to database...");
+  await database.connect().then(() => {
+    console.log("Database connection successful.");
+  }).catch((err) => {
+    console.error("Database connection failed:", err);
+    process.exit(1);
+  });
 
   // Setup welcome router
   app.get("/", (req: Request, res: Response) => {

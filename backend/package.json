@@ -19,11 +19,13 @@
     "start": "node dist/index.js",
     "watch-tsc": "tsc --watch",
     "watch-server": "nodemon --watch dist --exec node dist/index.js",
-    "dev": "npm run watch-tsc & npm run watch-server"
+    "dev": "npm run watch-tsc & npm run watch-server",
+    "test": "vitest --coverage"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
+    "@vitest/coverage-v8": "^4.0.15",
     "nodemon": "^3.1.11",
     "typescript": "^5.9.3"
   },
