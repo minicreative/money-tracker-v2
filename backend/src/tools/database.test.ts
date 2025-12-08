@@ -33,7 +33,7 @@ describe("database.connect", () => {
       .spyOn(mongoose, "connect")
       .mockRejectedValueOnce(new Error("Connection failed"));
 
-    await expect(database.connect()).rejects.toThrowError();
+    await expect(() => database.connect()).rejects.toThrowError("Connection failed");
 
     expect(mongooseConnectMock).toHaveBeenCalledWith(
       "mongodb://testuser:testpass@localhost:27017/testdb",

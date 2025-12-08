@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import environment from "./environment.js";
 
 async function connect(): Promise<mongoose.Mongoose> {

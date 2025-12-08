@@ -10,7 +10,6 @@ export default async function index() {
   const app = express();
 
   // Connect to database
-  console.log("Connecting to database...");
   await database.connect().then(() => {
     console.log("Database connection successful.");
   }).catch((err) => {
