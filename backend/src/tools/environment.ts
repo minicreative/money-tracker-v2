@@ -5,10 +5,13 @@ interface MongoConfig {
   name: string;
 }
 
-function getOptionalString(name: string, defaultString: string): string {
+function getOptionalString(name: string, allowedStrings: string[], defaultString: string): string {
   const value = process.env[name];
   if (!value) {
     return defaultString;
+  }
+  if (!allowedStrings.includes(value)) {
+    throw new Error(`Environment variable ${name} must be one of [${allowedStrings.join(", ")}], but got "${value}".`);
   }
   return value;
 }
@@ -39,7 +42,7 @@ function getNumericValue(name: string): number {
 }
 
 export default {
-  getEnviornment: () => getOptionalString("NODE_ENV", "development"),
+  getEnviornment: () => getOptionalString("NODE_ENV", ["development", "production"], "development"),
   getPort: () => getNumericValue("PORT"),
   getMongoConfig: () => {
     const mongoConfig: MongoConfig = {

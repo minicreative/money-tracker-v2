@@ -14,6 +14,13 @@ describe("environment.getEnviornment", () => {
     vi.stubEnv("NODE_ENV", "");
     expect(enviornment.getEnviornment()).toBe("development");
   });
+
+  test("returns 'development' when NODE_ENV is not an allowed value", () => {
+    vi.stubEnv("NODE_ENV", "foobar");
+    expect(() => enviornment.getEnviornment()).toThrowError(
+      "Environment variable NODE_ENV must be one of [development, production], but got \"foobar\".",
+    );
+  });
 });
 
 describe("environment.getPort", () => {
